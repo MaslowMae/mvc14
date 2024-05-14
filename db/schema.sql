@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS thoughtBlogger_db;
+CREATE DATABASE IF NOT EXISTS thoughtBlogger_db;
