@@ -1,0 +1,16 @@
+<h2>Your Posts</h2>
+<div>
+    {{#each posts}}
+    <div class="post">  
+    <h2>{{this.postTitle}}</h2>
+    <p>{{this.post_content}}</p>
+    {{/each }}
+</div>
+
+<h2> Your Comments</h2>
+<div>    {{#each comments}}
+    <div class="comments">  
+    <h2>{{this.comment_text}}</h2>
+    <p>{{this.postTitle}}</p>
+    {{/each }}
+</div>
