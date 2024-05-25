@@ -1,0 +1,23 @@
+{
+  "name": "mvc14",
+  "version": "1.0.0",
+  "description": "Coding Blog",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaslowMae/mvc14.git"
+  },
+  "keywords": [
+    "thoughtBlogger"
+  ],
+  "author": "Brittany Montanye",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/MaslowMae/mvc14/issues"
+  },
+  "homepage": "https://github.com/MaslowMae/mvc14#readme"
+}
