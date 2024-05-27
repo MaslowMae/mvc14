@@ -3,7 +3,7 @@ const loginFormHandler = async (event) => {
   
     // Collect values from the login form
   
-    const userName = document.querySelector("#username").value.trim();
+    const username = document.querySelector("#username").value.trim();
     const email = document.querySelector("#email-login").value.trim();
     const password = document.querySelector("#password-login").value.trim();
 
@@ -24,9 +24,24 @@ const loginFormHandler = async (event) => {
         alert(response.statusText);
       }
     };
+    const logout = async () => {
+      const response = await fetch('/api/users/logout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
     
+      if (response.ok) {
+        document.location.replace('/');
+      } else {
+        alert(response.statusText);
+      }
+    };
+    
+    document.querySelectorById('#logout').addEventListener('click', logout);
+  
     document
-      .querySelectorById("#login-sub")
+
+      .querySelectorById("#login-form")
       .addEventListener("submit", loginFormHandler);
 
       

@@ -1,9 +1,13 @@
-// models/User.js
-const { Model, DataTypes } = require("sequelize");
-const sequelize = require("../config/connection");
-const bcrypt = require("bcrypt");
 
-class User extends Model { }
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+const bcrypt =require('bcrypt');
+
+class User extends Model {
+    // checkPassword(loginPw) {
+    //     return bcrypt.compareSync(loginPw, this.password);
+    // }
+}
 
 User.init(
     {
@@ -31,26 +35,20 @@ User.init(
     {
         hooks: {
             beforeCreate: async (newUserData) => {
-                newUserData.password = await bcrypt.hash(newUserData.password, 10);
-                if (newUserData.email) {
-                    newUserData.email = newUserData.email.toLowerCase();
-                }
-                return newUserData;
+              newUserData.password = await bcrypt.hash(newUserData.password, 8);
+              return newUserData;
             },
             beforeUpdate: async (updatedUserData) => {
-                if (updatedUserData.email) {
-                    updatedUserData.email = updatedUserData.email.toLowerCase();
-                }
-                return updatedUserData;
+              updatedUserData.password = await bcrypt.hash(updatedUserData.password, 8);
+              return updatedUserData;
             },
-        }, 
-    }, {
+          },
         sequelize,
         timestamps: true,
         freezeTableName: true,
-        modelName: "User",
-        tableName: "users",
+        modelName: "user",
     }
 );
 
+console.log('made it to User model');
 module.exports = User;

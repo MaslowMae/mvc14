@@ -1,10 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection'); // Adjust the path as necessary
+const sequelize = require('../config/connection');
+const User = require("./User");
+const Post = require("./Post");
 
 class Comment extends Model {}
 
-Comment.init(
-  {
+Comment.init ({
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -15,26 +16,36 @@ Comment.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    user_id: {
-      type: DataTypes.INTEGER,
+    username: {
+      type: DataTypes.STRING,
       references: {
-        model: 'User',
-        key: 'id',
+        model: User,
+        key: 'username',
       },
     },
     post_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Post',
+        model: Post,
         key: 'id',
       },
     }, 
-}, {
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+  },
+  {
     sequelize,
     modelName: 'Comment',
     tableName: 'comments',
     timestamps: false,
-  }
-);
+  });
 
-module.exports = Comment;
+
+console.log('made it to Comment model');
+
+module.exports = 
+  Comment
+;

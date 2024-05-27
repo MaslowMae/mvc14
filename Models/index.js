@@ -1,6 +1,7 @@
 const User = require('./User');
 const Post = require('./Post');
-const Comment = require('./Comment');
+const Comment = require('./Comment.js');
+
 
 User.hasMany(Post, {
   foreignKey: 'user_id',
@@ -32,6 +33,8 @@ User.hasMany(Comment, {
   onDelete: 'CASCADE',
 });
 
-console.log('made it to associations');
+
+console.log('made it to associations models index');
+
 
 module.exports = { User, Post, Comment };

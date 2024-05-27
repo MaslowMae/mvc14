@@ -5,3 +5,5 @@ module.exports = {
       return date.toLocaleTimeString();
     },
   };
+
+  

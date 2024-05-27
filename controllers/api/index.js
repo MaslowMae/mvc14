@@ -3,7 +3,7 @@ const router = express.Router();
 const userRoutes = require("./userRoutes");
 const postRoutes = require("./posts");
 const commentRoutes = require("./comments");
-
+const {User, Post, Comment } = require ("../../models");
 
 router.use("./posts", postRoutes);
 router.use("./users", userRoutes);
