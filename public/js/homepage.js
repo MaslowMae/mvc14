@@ -1,21 +1,67 @@
+//code help
 
-const expresss = require ("express")
-const router = require ('router');
-const app = expresss();
 
-// const newFormHandler = async (event) => {
-//     event.preventDefault();
+// Wait until the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
   
-//     const name = document.querySelector('#project-name').value.trim();
-//     const needed_funding = document.querySelector('#project-funding').value.trim();
-//     const description = document.querySelector('#project-desc').value.trim();
+    // Function to fetch posts data and render it on the page
+    async function fetchPosts() {
+      try {
+        const response = await fetch('/api/posts');
+        if (response.ok) {
+          const body = await response.text();
+          const data = await response.json();
+          renderPosts(data);
+        } else {
+          console.error('Failed to fetch posts');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
   
-//   document
-//     .querySelector('.new-post-form')
-//     .addEventListener('submit', newFormHandler);
+    // Function to render posts on the page
+    function renderPosts(posts) {
+      const postsContainer = document.getElementById('posts-container');
+      postsContainer.innerHTML = ''; // Clear existing content
   
-//   document
-//     .querySelector('.project-list')
-//     .addEventListener('click', delButtonHandler);
-
-// };
+      posts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.className = 'post';
+        postElement.innerHTML = `
+          <h2>${post.title}</h2>
+          <p>${post.content}</p>
+          <button data-id="${post.id}" class="like-btn">Like</button>
+        `;
+        postsContainer.appendChild(postElement);
+      });
+  
+      // Add event listeners to like buttons
+      document.querySelectorAll('.like-btn').forEach(button => {
+        button.addEventListener('click', handleLikeButtonClick);
+      });
+    }
+  
+    // Event handler for like button click
+    async function handleLikeButtonClick(event) {
+      const postId = event.target.dataset.id;
+  
+      try {
+        const response = await fetch(`/api/posts/${postId}/like`, {
+          method: 'POST',
+        });
+  
+        if (response.ok) {
+          console.log(`Post ${postId} liked successfully`);
+        } else {
+          console.error('Failed to like post');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+  
+    // Fetch and render posts when the page loads
+    fetchPosts();
+  });

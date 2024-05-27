@@ -1,22 +1,20 @@
 const router = require("express").Router();
 const {User, Post, Comment } = require ("../../models");
-const withAuth = require("../../utils/auth.js");
+const {withAuthApi} = require("../../utils/auth.js");
 
-router.get("/", withAuth, async (req, res) => {
+router.get("/", withAuthApi, async (req, res) => {
   try {
     const postData = await Post.findAll({
       attributes: ["postTitle", "post_content"],
       include: [{ model: User, attributes: ["username"] }],
     });
-    res.status(200).json(postData);
+    return res.status(200).json(postData);
   } catch (err) {
-    res.status(400).json(err);
+    return res.status(400).json(err);
   }
-
-  res.render("post");
 });
 
-router.post("/", withAuth, async (req, res) => {
+router.post("/", withAuthApi, async (req, res) => {
   try {
     const newPost = await Post.create({
       ...req.body,
@@ -28,7 +26,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-router.delete("/:id", withAuth, async (req, res) => {
+router.delete("/:id", withAuthApi, async (req, res) => {
   try {
     const postData = await Post.destroy({
       where: {
@@ -46,7 +44,7 @@ router.delete("/:id", withAuth, async (req, res) => {
   }
 });
 
-router.put("/:id", withAuth, async (req, res) => {
+router.put("/:id", withAuthApi, async (req, res) => {
   try {
     const postData = await Post.update(req.body, {
       where: {

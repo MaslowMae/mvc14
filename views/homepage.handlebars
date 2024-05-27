@@ -11,20 +11,9 @@
 
   <title>codeAbode</title>
 </head>
-
-
 <body>
-  <h1>hello world</h1>
-
-
-  <script src="../public/js/homepage.js"></script>
-</body>
-
-</html>
-
-
- <!-- Navbar bootstrap -->
-  {{!-- <header>
+  <!-- Navbar bootstrap -->
+  <header>
     <div id="homepage" action="/" class="advanced-homepage">
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
@@ -93,21 +82,14 @@
           <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
           <a href="#" class="btn btn-primary">Create New Post</a>
         </div>
-
-
-
         <h3 class="comment-section-title">Comments</h3>
          <ol id="comment-section-1" class="comment-section">
             <h3 class="comment-section-title">Comments</h3>
-
           <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto comment">
               <div class="comment_text">{{comment.content}}</div>
               This is Comment Content
             </div>
-
-
-
             <span class="badge bg-primary rounded-pill">0</span>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -130,10 +112,8 @@
         <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Thoughts and Opinions">
         <button type="button" class="btn btn-secondary btn-sm">Submit</button>
       </div>
+      {{/each}}
     </div>
   </div>
-
-  {{!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" --}}
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
-  <script src="../js/homepage"></script> --}}
+</body>
+</html>

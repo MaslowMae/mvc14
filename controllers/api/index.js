@@ -5,9 +5,9 @@ const postRoutes = require("./posts");
 const commentRoutes = require("./comments");
 const {User, Post, Comment } = require ("../../models");
 
-router.use("./posts", postRoutes);
-router.use("./users", userRoutes);
-router.use("./comments", commentRoutes)
+router.use("/posts", postRoutes);
+router.use("/users", userRoutes);
+router.use("/comments", commentRoutes)
 
 
 console.log('made it to api index');
