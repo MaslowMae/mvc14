@@ -29,5 +29,5 @@
   };
   
   document
-    .querySelector(".signup-form")
+    .querySelector(".signup-submit")
     .addEventListener("submit", signupFormHandler);

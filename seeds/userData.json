@@ -12,5 +12,12 @@
         "email": "testUser2@testemail.com",
         "password": "test123456",
         "date_created": "2024-05-26 00:00:00"
+    },
+    {
+    "user_id":2,
+    "username": "testUser3",
+    "email": "testUser3@testemail.com",
+    "password": "test123456",
+    "date_created": "2024-06-07 00:00:00"
     }
 ]

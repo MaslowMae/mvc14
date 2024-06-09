@@ -2,27 +2,25 @@ const router = require("express").Router();
 const { User, Post, Comment } = require("../models");
 const { withAuth } = require("../utils/auth");
 
-
-//GET all of the posts for homepage
-router.get("/", withAuth, async (req, res) => {
+// Function to render homepage
+const renderHomepage = async (req, res) => {
   try {
-    const postData = await User.findAll({
+    const postData = await Post.findAll({
       include: [
-        { 
-          model: User, 
+        {
+          model: User,
           attributes: { exclude: ["password"] },
         },
         {
           model: Comment,
           attributes: ['comment_text'],
         },
-      ]
+      ],
+      order: [['id', 'DESC']]  // Sort by ID in descending order
     });
     
     const posts = postData.map((post) => post.get({ plain: true }));
 
-
-       // We set up a session variable to count the number of times we visit the homepage
     req.session.save(() => {
       if (req.session.countVisit) {
         req.session.countVisit++;
@@ -40,9 +38,11 @@ router.get("/", withAuth, async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
-});
+};
 
-
+// GET all of the posts for homepage
+router.get("/", renderHomepage);
+router.get("/homepage", renderHomepage); // Added route for /homepage
 
 // GET one post
 router.get('/post/:id', async (req, res) => {
@@ -71,7 +71,6 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-
 // GET login page
 router.get("/login", (req, res) => {
   if (req.session.logged_in) {
@@ -82,8 +81,7 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-
-//get signup page
+// GET signup page
 router.get("/signup", (req, res) => {
   console.log("Signup");
   if (req.session.logged_in) {

@@ -1,7 +1,16 @@
 [
     {
         "id": 1,
-        "comment_text": "This is a test comment",
+        "comment_text": "Here is a question I have, what if it doesn't work?",
+        "username": "testUser2",
+        "post_id": 1,
+        "date_created": "2024-05-26 00:00:00"
+        
+        
+    },
+    {
+        "id": 2,
+        "comment_text": "I am going to use this in my next post. ",
         "username": "testUser2",
         "post_id": 1,
         "date_created": "2024-05-26 00:00:00"

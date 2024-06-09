@@ -1,11 +1,18 @@
 [
     {
-        "id": 1,
-        "postTitle": "Test Post",
-        "post_content": "This is a test post",
-        "username": "testUser1",
-        "user_id": 1,
-        "date_created": "2024-05-26 00:00:00"
-        
+      "id": 1,
+      "postTitle": "Coding is fun",
+      "post_content": "🔹StackOverflow\n🔹Stack Exchange,\n🔹Quora,\n🔹Programmers Heaven,\n🔹Reddit,\n🔹Code Ranch,\n🔹Code Project",
+      "username": "testUser3",
+      "user_id": 1,
+      "date_created": "2024-05-26T00:00:00"
+    },
+    {
+      "id": 2,
+      "postTitle": "If you're looking for ideas on what to write about, consider covering topics such as:",
+      "post_content": "The benefits of using JavaScript\n\nTips for getting started with JavaScript\n\nHow to use JavaScript to improve your web development workflow\n\nThe latest trends in JavaScript development\n\nHow to overcome common challenges when working with JavaScript",
+      "username": "testUser2",
+      "user_id": 2,
+      "date_created": "2024-06-07T00:00:00"
     }
-]
+  ]
