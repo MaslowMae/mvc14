@@ -2,15 +2,18 @@ const router = require("express").Router();
 const {User, Post, Comment } = require ("../../models");
 const {withAuthApi} = require("../../utils/auth.js");
 
-router.get("/", withAuthApi, async (req, res) => {
+
+router.get("/", async (req, res) => {
+console.log("getting posts");
+  // res.send("hello");
   try {
     const postData = await Post.findAll({
-      attributes: ["postTitle", "post_content"],
+      attributes: ["id","postTitle", "post_content"],
       include: [{ model: User, attributes: ["username"] }],
     });
-    return res.status(200).json(postData);
+     res.status(200).json(postData);
   } catch (err) {
-    return res.status(400).json(err);
+     res.status(400).json(err);
   }
 });
 

@@ -16,13 +16,13 @@
         <a class="navbar-brand" href="/">codeAbode</a>
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a class="nav-link" href="/views/profile.handlebars">Profile</a>
+            <a class="nav-link" href="/profile">Profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/views/login.handlebars">Login</a>
+            <a class="nav-link" href="/login">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/views/signup.handlebars" tabindex="-1">Sign-up</a>
+            <a class="nav-link" href="/signup" tabindex="-1">Sign-up</a>
           </li>
         </ul>
       </div>
@@ -68,8 +68,8 @@
   {{#if latestPost}}
     <div class="post featured-post">
       <div class="card-body">
-        <h5 class="card-title">{{latestPost.title}}</h5>
-        <p class="card-text">{{latestPost.content}}</p>
+        <h5 class="card-title">{{latestPost.postTitle}}</h5>
+        <p class="card-text">{{latestPost.post_content}}</p>
         <a href="#" class="btn btn-primary">Create New Post</a>
       </div>
       <ol class="comment-section">

@@ -1,31 +1,16 @@
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-  try {
-    // Fetch the latest post data
-    const response = await fetch('../api/posts')
-    if (!response.ok) {
-      throw new Error('Failed to fetch latest post');
-    }
-    const { latestPost } = await response.json();
-
-    // Render the latest post on the page
-    renderLatestPost(latestPost);
-
-    // Add event listener for submitting comments
-    const commentForm = document.getElementById('comment-form');
-    commentForm.addEventListener('submit', handleCommentSubmit);
-  } catch (error) {
-    console.error('Error:', error);
-  }
 });
 
 function renderLatestPost(posts) {
+  console.log("rendering latest post");
   const postContainer = document.querySelector('.col-md-8');
   if (!postContainer) {
     console.error('Post container not found');
     return;
   }
+postContainer.innerHTML="";
 
   // Sort the posts array based on the post ID in descending order
   const sortedPosts = posts.sort((a, b) => b.id - a.id);
@@ -38,13 +23,12 @@ function renderLatestPost(posts) {
   postElement.classList.add('post', 'featured-post');
   postElement.innerHTML = `
     <div class="card-body">
-      <h5 class="card-title">${latestPost.title}</h5>
-      <p class="card-text">${latestPost.content}</p>
+      <h5 class="card-title">${latestPost.postTitle}</h5>
+      <p class="card-text">${latestPost.post_content}</p>
       <a href="#" class="btn btn-primary">Create New Post</a>
     </div>
     <ol class="comment-section">
       <h3 class="comment-section-title">Comments</h3>
-      ${renderComments(latestPost.comments)}
     </ol>
     <form id="comment-form">
       <label for="comment_text">Add a comment:</label>
@@ -97,3 +81,24 @@ async function handleCommentSubmit(event) {
     alert('Failed to submit comment');
   }
 }
+
+(async () => {
+  try {
+    // Fetch the latest post data
+    // debugger;
+    const response = await fetch('/api/posts')
+    if (!response.ok) {
+      throw new Error('Failed to fetch latest post');
+    }
+    const latestPost = await response.json();
+
+    // Render the latest post on the page
+    renderLatestPost(latestPost);
+
+    // Add event listener for submitting comments
+    const commentForm = document.getElementById('comment-form');
+    commentForm.addEventListener('submit', handleCommentSubmit);
+  } catch (error) {
+    console.error('Error:', error);
+  };
+})();
